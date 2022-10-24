@@ -41,6 +41,21 @@ python3 app.py
 in your browser. The meme is generated randomly, the meme engine will select an image, a quote, and the author randomly
 tou can pres F5 and every time a new meme will be generated.
 
+# Overview
+
+The application has the next modules
+
+1. QEngine, this module has all the ingestors, an ingestor will extract quotes from PDF, text files, Docx files and CSV files.
+Every ingestor will implement the parse method.
+   
+2. MemeEngine will use 
+   - all the ingestors to create the quotes
+   - Pillow library to load, add the text to the image and save the image to the disk
+   
+3. app.py is the web application and will use QEngine and MemeEngine to provide the web server to create the memes.
+4. meme.py is the cli application and will use QEngine and MemeEngine to provide the web server to create the memes, we use
+argsparse module to create the optional arguments of the command.
+
 ## Requirements
 * pandas
 * flask
