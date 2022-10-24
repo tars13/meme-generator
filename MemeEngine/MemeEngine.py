@@ -7,33 +7,36 @@ import random
 class MemeEngine:
     """Class to generate actual meme files."""
 
-    def __init__(self,path):
+    meme_width = 500
+    meme_fill = 'white'
+    meme_factor = 18
+
+    def __init__(self,meme_dir: str):
         """Initiate meme engine with path there store produced meme files."""
-        self.temp_dir = path
+        self.mem_dir = meme_dir
 
-    def make_meme(self, img_path, text, author, width=500) -> str:
+    def make_meme(self, img: str, body: str, author: str) -> str:
         """Generate Meme with given img, text, and author."""
-        out_path = f"{self.temp_dir}/{random.randint(0,1000000)}.png"
 
-        if width >= 500:
-            width = 500
-        try:
-            with Image.open(img_path) as img:
-                ratio = img.height / img.width
-                height = width * ratio
-                img = img.resize((int(width), int(height)))
-                font_size = int(img.height/20)
+        caption = f'{body}, {author}'
 
-                draw = ImageDraw(img)
-                font = ImageFont.truetype("./_data/arial.ttf", font_size)
+        with Image.open(img) as meme:
+            #resize img    
+            old_width, old_height = meme.size
+            scale = self.meme_width/old_width
+            new_size = new_width, new_height = self.meme_width, int(scale*old_height)
+            meme = meme.resize(new_size)
 
-                x_loc = random.randint(0, int(img.width/4))
-                y_loc = random.randint(0, int(img.height-font_size*2))
+            #caption image to a random location on the left half of the image
+            #depending on font size
+            draw = ImageDraw(meme)
+            font_size = self.meme_width//self.meme_factor
+            x,y = 10, random.randint(font_size, new_height-font_size)
+            font = ImageFont.truetype(font=self.meme_font, size = font_size)
+            draw.text((x,y), caption, fill=self.meme_fill, font=font)
 
-                draw.text((x_loc, y_loc), text, font=font, fill=(0, 0, 0))
-                draw.text((int(x_loc*1.2), y_loc+font_size), " - "+author, font=font)
-                img.save(out_path)
-        except:
-            raise Exception("Invalid image path")
-        
+            #save meme to out path determined by MemeEngine object
+            meme_name = f'meme_{img.split("/")[-1]}'
+            out_path = f'{self.mem_dir}/{meme_name}'
+            meme.save(out_path)
         return out_path
