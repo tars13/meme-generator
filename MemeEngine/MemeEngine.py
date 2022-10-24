@@ -29,7 +29,7 @@ class MemeEngine:
 
             #caption image to a random location on the left half of the image
             #depending on font size
-            draw = ImageDraw(meme)
+            draw = ImageDraw.Draw(meme)
             font_size = self.meme_width//self.meme_factor
             x,y = 10, random.randint(font_size, new_height-font_size)
             font = ImageFont.truetype(font=self.meme_font, size = font_size)
