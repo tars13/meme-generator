@@ -33,12 +33,13 @@ pip install -U Flask
 
 ### As web app
 
+1. Start web server
+```shell
+python3 app.py
 ```
-python app.py
-```
-
-and open http://127.0.0.1:5000/
-
+2. Access the application using the next url http://127.0.0.1:5000/ you will see a meme being generated and display
+in your browser. The meme is generated randomly, the meme engine will select an image, a quote, and the author randomly
+tou can pres F5 and every time a new meme will be generated.
 
 ## Requirements
 * pandas
