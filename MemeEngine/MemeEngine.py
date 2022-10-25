@@ -6,7 +6,7 @@ import random
 
 class MemeEngine:
     """Class to generate actual meme files."""
-
+    meme_font = '.LilitaOne-Regular.ttf'
     meme_width = 500
     meme_fill = 'white'
     meme_factor = 18
