@@ -6,11 +6,12 @@ import os
 from .IngestorInterface import IngestorInterface, QuoteModel
 from .IngestorTXT import IngestorTXT
 
+
 class IngestorPDF(IngestorInterface):
     """Helper module to read PDF file.
-    
-    Use a subprocess to call pdftotext to convert the pdf to a random temp 
-    text file. Then call the pre-written IngestorTXT to ingest the resulting 
+
+    Use a subprocess to call pdftotext to convert the pdf to a random temp
+    text file. Then call the pre-written IngestorTXT to ingest the resulting
     txt file.
     """
 

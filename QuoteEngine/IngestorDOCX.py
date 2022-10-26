@@ -4,6 +4,7 @@ from xmlrpc.server import DocXMLRPCRequestHandler
 from .IngestorInterface import IngestorInterface, QuoteModel
 from docx import Document
 
+
 class IngestorDOCX(IngestorInterface):
     """Helper module to read Docx file."""
 

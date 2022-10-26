@@ -3,8 +3,10 @@
 from .IngestorInterface import IngestorInterface, QuoteModel
 import pandas as pd
 
+
 class IngestorCSV(IngestorInterface):
-    """The csv file have a header and be of 2 columns, first column labelled
+    """The csv file have a header and be of 2 columns, first column labelled.
+
     'body' and second column labelled 'author'.
     """
 

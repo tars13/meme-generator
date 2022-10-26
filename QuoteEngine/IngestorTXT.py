@@ -2,13 +2,13 @@
 
 from .IngestorInterface import IngestorInterface, QuoteModel
 
+
 class IngestorTXT(IngestorInterface):
     """Helper class to read txt file."""
 
     supported_formats = {"txt"}
 
     @classmethod
-
     def parse(cls, path: str):
         """Ingest the file in path and returns a list of QuoteModels of ingested Quotes."""
         if not cls.can_ingest(path):

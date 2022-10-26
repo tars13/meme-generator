@@ -57,7 +57,11 @@ def meme_form():
 def meme_post():
     """Create a user defined meme."""
     img_url = request.form["image_url"]
-    req = requests.get(img_url)
+    try:
+        req = requests.get(img_url)
+    except requests.exceptions.ConnectionError:
+        print("invalid image url entered")
+        return render_template('error.html')
     try:
         with open(tmp, 'wb') as open_file:
             open_file.write(req.content)

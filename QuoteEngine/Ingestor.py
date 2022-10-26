@@ -6,6 +6,7 @@ from .IngestorDOCX import IngestorDOCX
 from .IngestorCSV import IngestorCSV
 from .IngestorPDF import IngestorPDF
 
+
 class Ingestor(IngestorInterface):
     """Class encapsulating each file type."""
 
