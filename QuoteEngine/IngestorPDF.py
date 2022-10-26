@@ -21,12 +21,15 @@ class IngestorPDF(IngestorInterface):
     def parse(cls, path: str):
         """Ingest the file in path and returns a list of QuoteModels of ingested Quotes."""
         if not cls.can_ingest(path):
-            raise Exception(f"unsupported file format: requires{cls.supported_formats}")
+            raise Exception(f'unsupported file format: requires{cls.supported_formats}')
 
-        tmp = f"{random.randint(0,1000000)}.txt"
-        subprocess.run(['pdftotext', path, tmp], shell=True, check=True)
+        tmp_code = ''.join([str(random.randint(0, 9)) for _ in range(5)])
+        tmp_file = f"temp_file_{tmp_code}.txt"
 
-        quotes = IngestorTXT.parse(tmp)
+        subprocess.run(['pdftotext', path, tmp_file], shell=True, check=True)
 
-        os.remove(tmp)
+        quotes = IngestorTXT.parse(tmp_file)
+
+        os.remove(tmp_file)
+
         return quotes
